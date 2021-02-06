@@ -1,0 +1,70 @@
+########## Server config ##########
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+########## Spring config ##########
+spring:
+  datasource:
+    hikari:
+      username: root
+      password: Root@1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/spring_boot_demo
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    open-in-view: true
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+  resources:
+    add-mappings: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  redis:
+    host: localhost
+    port: 6379
+    # Connection timeout (remember to add unit, Duration)
+    timeout: 10000ms
+    # Redis has 16 parts by default, and the specific parts were configured here
+    # database: 0
+    lettuce:
+      pool:
+        # The maximum number of connections in the connection pool (use a negative value to indicate unlimited) Default 8
+        max-active: 8
+        # The maximum blocking waiting time of the connection pool (use a negative value to indicate unlimited) Default -1
+        max-wait: -1ms
+        # Maximum idle connection in the connection pool Default 8
+        max-idle: 8
+        # The smallest idle connection in the connection pool Default 0
+        min-idle: 0
+
+########## JWT config ##########
+jwt:
+  config:
+    secret: boilerplate
+    ttl: 600000
+    remember: 604800000
+
+########## Logging config ##########
+logging:
+  level:
+    vn.com.minhlq.boilerplate: debug
+
+########## Custom for authentication config ##########
+custom:
+  config:
+    ignores:
+      # Requests that no need to be filtered, unlimited methods
+      pattern:
+        - /swagger-ui/index.html
+        - /test/**
+      # Post requests that no need to be filtered
+      post:
+        - /auth/login
+        - /auth/logout
+        - /auth/register
