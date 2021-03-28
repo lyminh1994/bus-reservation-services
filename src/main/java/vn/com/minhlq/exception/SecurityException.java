@@ -2,20 +2,21 @@ package vn.com.minhlq.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.http.HttpStatus;
+import vn.com.minhlq.commons.BaseException;
+import vn.com.minhlq.commons.Status;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class SecurityException extends BaseException {
 
-    public SecurityException(HttpStatus status) {
+    public SecurityException(Status status) {
         super(status);
     }
 
-    public SecurityException(HttpStatus status, Object data) {
+    public SecurityException(Status status, Object data) {
         super(status, data);
     }
 

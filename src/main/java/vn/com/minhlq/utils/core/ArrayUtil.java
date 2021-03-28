@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @UtilityClass
 public class ArrayUtil extends ArrayUtils {

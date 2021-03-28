@@ -13,7 +13,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.io.Serializable;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Configuration
 @EnableCaching

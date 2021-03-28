@@ -2,7 +2,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /api
+    context-path: /
 
 ########## Spring config ##########
 spring:
@@ -61,10 +61,8 @@ custom:
     ignores:
       # Requests that no need to be filtered, unlimited methods
       pattern:
-        - /swagger-ui/index.html
-        - /test/**
+        - /swagger-ui.html
       # Post requests that no need to be filtered
       post:
         - /auth/login
         - /auth/logout
-        - /auth/register

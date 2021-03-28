@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 
@@ -18,7 +18,7 @@ public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
     }
 
     @Override
-    public boolean isValid(String email, ConstraintValidatorContext context){
+    public boolean isValid(String email, ConstraintValidatorContext context) {
         return (validateEmail(email));
     }
 

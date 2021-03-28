@@ -3,10 +3,10 @@ package vn.com.minhlq;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import vn.com.minhlq.entity.*;
-import vn.com.minhlq.entity.unionkey.RolePermissionKey;
-import vn.com.minhlq.entity.unionkey.UserRoleKey;
-import vn.com.minhlq.repository.*;
+import vn.com.minhlq.models.*;
+import vn.com.minhlq.models.unionkey.RolePermissionKey;
+import vn.com.minhlq.models.unionkey.UserRoleKey;
+import vn.com.minhlq.repositories.*;
 import vn.com.minhlq.utils.core.DateUtil;
 
 import java.text.ParseException;

@@ -3,11 +3,11 @@ package vn.com.minhlq.utils;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.PageRequest;
-import vn.com.minhlq.common.CommonConst;
+import vn.com.minhlq.commons.Const;
 import vn.com.minhlq.payload.PageCondition;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @UtilityClass
 public class PageUtil {
@@ -19,16 +19,16 @@ public class PageUtil {
      * @param clazz     Class
      * @param <T>       {@link PageCondition}
      */
-    public <T extends PageCondition> void checkPageCondition(T condition, Class<T> clazz) throws IllegalAccessException, InstantiationException {
-        if (ObjectUtils.isEmpty(condition)) {
-            condition = clazz.newInstance();
-        }
+    public <T extends PageCondition> void checkPageCondition(T condition, Class<T> clazz) {
+//        if (ObjectUtils.isEmpty(condition)) {
+//            condition = clazz.newInstance();
+//        }
         // Verify paging parameters
         if (ObjectUtils.isEmpty(condition.getCurrentPage())) {
-            condition.setCurrentPage(CommonConst.DEFAULT_CURRENT_PAGE);
+            condition.setCurrentPage(Const.DEFAULT_CURRENT_PAGE);
         }
         if (ObjectUtils.isEmpty(condition.getPageSize())) {
-            condition.setPageSize(CommonConst.DEFAULT_PAGE_SIZE);
+            condition.setPageSize(Const.DEFAULT_PAGE_SIZE);
         }
     }
 
