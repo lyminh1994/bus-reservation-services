@@ -6,7 +6,7 @@ import org.apache.commons.collections4.IterableUtils;
 import java.util.Iterator;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @UtilityClass
 public class IterableUtil extends IterableUtils {

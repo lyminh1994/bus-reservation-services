@@ -4,7 +4,7 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Data
 @ConfigurationProperties(prefix = "jwt.config")

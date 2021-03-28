@@ -6,19 +6,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import vn.com.minhlq.commons.Status;
 import vn.com.minhlq.config.CustomConfig;
 import vn.com.minhlq.exception.SecurityException;
-import vn.com.minhlq.security.jwt.JwtUtil;
+import vn.com.minhlq.security.services.UserDetailsServiceImpl;
 import vn.com.minhlq.utils.ResponseUtil;
 
 import javax.servlet.FilterChain;
@@ -29,16 +28,16 @@ import java.io.IOException;
 import java.util.Set;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Slf4j
 @Component
 @AllArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final UserDetailsService userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
 
-    private final JwtUtil jwtUtil;
+    private final JwtUtils jwtUtils;
 
     private final CustomConfig customConfig;
 
@@ -50,11 +49,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         // Get JWT string from request header authorization path
-        String jwt = jwtUtil.getJwtFromRequest(request);
+        String jwt = jwtUtils.getJwtFromRequest(request);
 
         if (StringUtils.isNotBlank(jwt)) {
             try {
-                String username = jwtUtil.getUsernameFromJWT(jwt);
+                String username = jwtUtils.getUsernameFromJWT(jwt);
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -63,10 +62,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 filterChain.doFilter(request, response);
             } catch (SecurityException e) {
+                log.error("[JwtAuthenticationFilter] doFilterInternal: Error Messages {}", e.getMessage());
                 ResponseUtil.renderJson(response, e);
             }
         } else {
-            ResponseUtil.renderJson(response, HttpStatus.UNAUTHORIZED, null);
+            log.error("[JwtAuthenticationFilter] doFilterInternal: Error Messages {}", "JWT is blank!");
+            ResponseUtil.renderJson(response, Status.ACCESS_DENIED, null);
         }
     }
 

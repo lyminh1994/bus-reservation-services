@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.charset.UnsupportedCharsetException;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Slf4j
 @UtilityClass
@@ -83,5 +83,5 @@ public class CharsetUtil extends CharSetUtils {
 
         CHARSET_GBK = charsetGbk;
     }
-    
+
 }

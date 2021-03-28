@@ -5,7 +5,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @UtilityClass
 public class StringFormatter {
@@ -16,7 +16,7 @@ public class StringFormatter {
             StringBuilder stringBuilder = new StringBuilder(strPatternLength + 50);
             int handledPosition = 0;
 
-            for(int argIndex = 0; argIndex < argArray.length; argIndex++) {
+            for (int argIndex = 0; argIndex < argArray.length; argIndex++) {
                 int delimiterIndex = strPattern.indexOf("{}", handledPosition);
                 if (delimiterIndex == -1) {
                     if (handledPosition == 0) {
@@ -51,5 +51,5 @@ public class StringFormatter {
             return strPattern;
         }
     }
-    
+
 }

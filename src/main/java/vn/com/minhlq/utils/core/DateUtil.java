@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.time.DateUtils;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @UtilityClass
 public class DateUtil extends DateUtils {

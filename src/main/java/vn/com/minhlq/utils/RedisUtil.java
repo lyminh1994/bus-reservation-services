@@ -10,13 +10,13 @@ import org.springframework.data.redis.core.RedisConnectionUtils;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
-import vn.com.minhlq.common.PageResult;
+import vn.com.minhlq.commons.PageResult;
 
 import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Slf4j
 @Component

@@ -3,7 +3,7 @@ package vn.com.minhlq.dto;
 import lombok.Data;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Data
 public class PermissionDto {

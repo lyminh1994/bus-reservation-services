@@ -7,7 +7,7 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @Configuration
 @EnableWebSocketMessageBroker

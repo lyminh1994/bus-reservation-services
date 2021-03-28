@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author Minh Ly Quang
+ * @author MinhLQ
  */
 @UtilityClass
 public class JSONUtil {

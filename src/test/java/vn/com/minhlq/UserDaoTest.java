@@ -5,8 +5,8 @@ import org.assertj.core.util.Lists;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import vn.com.minhlq.entity.User;
-import vn.com.minhlq.repository.UserRepository;
+import vn.com.minhlq.models.User;
+import vn.com.minhlq.repositories.UserRepository;
 
 import java.util.List;
 
