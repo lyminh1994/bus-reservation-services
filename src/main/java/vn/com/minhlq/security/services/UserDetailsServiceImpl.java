@@ -6,12 +6,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import vn.com.minhlq.models.Permission;
-import vn.com.minhlq.models.Role;
-import vn.com.minhlq.models.User;
-import vn.com.minhlq.repositories.PermissionRepository;
-import vn.com.minhlq.repositories.RoleRepository;
-import vn.com.minhlq.repositories.UserRepository;
+import vn.com.minhlq.model.Permission;
+import vn.com.minhlq.model.Role;
+import vn.com.minhlq.model.User;
+import vn.com.minhlq.repository.PermissionRepository;
+import vn.com.minhlq.repository.RoleRepository;
+import vn.com.minhlq.repository.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User information not found: " + usernameOrEmailOrPhone));
         List<Role> roles = roleRepository.selectByUserId(user.getId());
         List<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toList());
-        List<Permission> permissions = permissionRepository.selectByRoleIdList(roleIds);
+        List<Permission> permissions = permissionRepository.selectByListRoleIds(roleIds);
         return UserPrincipal.create(user, roles, permissions);
     }
 

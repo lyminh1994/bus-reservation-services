@@ -3,7 +3,7 @@ package vn.com.minhlq.utils;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.PageRequest;
-import vn.com.minhlq.commons.Const;
+import vn.com.minhlq.common.CommonConstants;
 import vn.com.minhlq.payload.PageCondition;
 
 /**
@@ -25,10 +25,10 @@ public class PageUtil {
 //        }
         // Verify paging parameters
         if (ObjectUtils.isEmpty(condition.getCurrentPage())) {
-            condition.setCurrentPage(Const.DEFAULT_CURRENT_PAGE);
+            condition.setCurrentPage(CommonConstants.DEFAULT_CURRENT_PAGE);
         }
         if (ObjectUtils.isEmpty(condition.getPageSize())) {
-            condition.setPageSize(Const.DEFAULT_PAGE_SIZE);
+            condition.setPageSize(CommonConstants.DEFAULT_PAGE_SIZE);
         }
     }
 

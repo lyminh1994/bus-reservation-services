@@ -2,8 +2,8 @@ package vn.com.minhlq.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import vn.com.minhlq.commons.BaseException;
-import vn.com.minhlq.commons.Status;
+import vn.com.minhlq.common.BaseException;
+import vn.com.minhlq.common.ResultCode;
 
 /**
  * @author MinhLQ
@@ -12,12 +12,12 @@ import vn.com.minhlq.commons.Status;
 @EqualsAndHashCode(callSuper = true)
 public class SecurityException extends BaseException {
 
-    public SecurityException(Status status) {
-        super(status);
+    public SecurityException(ResultCode resultCode) {
+        super(resultCode);
     }
 
-    public SecurityException(Status status, Object data) {
-        super(status, data);
+    public SecurityException(ResultCode resultCode, Object data) {
+        super(resultCode, data);
     }
 
     public SecurityException(Integer code, String message) {

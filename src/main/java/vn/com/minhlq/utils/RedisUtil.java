@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.RedisConnectionUtils;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
-import vn.com.minhlq.commons.PageResult;
+import vn.com.minhlq.common.PageResult;
 
 import java.util.Collection;
 import java.util.List;
@@ -43,10 +43,10 @@ public class RedisUtil {
 
         long tmpIndex = 0;
         int startIndex = (currentPage - 1) * pageSize;
-        int end = currentPage * pageSize;
+        int endIndex = currentPage * pageSize;
         while (cursor.hasNext()) {
             String key = new String(cursor.next());
-            if (tmpIndex >= startIndex && tmpIndex < end) {
+            if (tmpIndex >= startIndex && tmpIndex < endIndex) {
                 result.add(key);
             }
             tmpIndex++;
@@ -54,12 +54,12 @@ public class RedisUtil {
 
         try {
             cursor.close();
-            RedisConnectionUtils.releaseConnection(rc, factory, Boolean.TRUE);
+            RedisConnectionUtils.releaseConnection(rc, factory);
         } catch (Exception e) {
             log.warn("Redis connection closed abnormally，", e);
         }
 
-        return new PageResult<>(result, tmpIndex);
+        return new PageResult<>(tmpIndex, currentPage, pageSize, result);
     }
 
     /**

@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.ObjectUtils;
-import vn.com.minhlq.commons.Const;
+import vn.com.minhlq.common.CommonConstants;
 import vn.com.minhlq.security.services.UserPrincipal;
 
 /**
@@ -20,7 +20,7 @@ public class SecurityUtils {
      */
     public String getCurrentUsername() {
         UserPrincipal currentUser = getCurrentUser();
-        return ObjectUtils.isEmpty(currentUser) ? Const.ANONYMOUS_NAME : currentUser.getUsername();
+        return ObjectUtils.isEmpty(currentUser) ? CommonConstants.ANONYMOUS_NAME : currentUser.getUsername();
     }
 
     /**

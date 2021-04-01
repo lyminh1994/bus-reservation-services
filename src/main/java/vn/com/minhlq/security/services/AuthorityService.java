@@ -12,13 +12,13 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import vn.com.minhlq.commons.Const;
-import vn.com.minhlq.commons.Status;
+import vn.com.minhlq.common.CommonConstants;
+import vn.com.minhlq.common.ResultCode;
 import vn.com.minhlq.exception.SecurityException;
-import vn.com.minhlq.models.Permission;
-import vn.com.minhlq.models.Role;
-import vn.com.minhlq.repositories.PermissionRepository;
-import vn.com.minhlq.repositories.RoleRepository;
+import vn.com.minhlq.model.Permission;
+import vn.com.minhlq.model.Role;
+import vn.com.minhlq.repository.PermissionRepository;
+import vn.com.minhlq.repository.RoleRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -34,9 +34,9 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AuthorityService {
 
-    private final RoleRepository roleDao;
+    private final RoleRepository roleRepository;
 
-    private final PermissionRepository permissionDao;
+    private final PermissionRepository permissionRepository;
 
     private final RequestMappingHandlerMapping mapping;
 
@@ -57,14 +57,14 @@ public class AuthorityService {
             UserPrincipal principal = (UserPrincipal) userInfo;
             Long userId = principal.getId();
 
-            List<Role> roles = roleDao.selectByUserId(userId);
+            List<Role> roles = roleRepository.selectByUserId(userId);
             List<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toList());
-            List<Permission> permissions = permissionDao.selectByRoleIdList(roleIds);
+            List<Permission> permissions = permissionRepository.selectByListRoleIds(roleIds);
 
             // Obtain resources, front and back ends are separated, so page permissions are filtered, and only button permissions are reserved
             List<Permission> btnPerms = permissions.stream()
                     // Filter page permissions
-                    .filter(permission -> Objects.equals(permission.getType(), Const.BUTTON))
+                    .filter(permission -> Objects.equals(permission.getType(), CommonConstants.BUTTON))
                     // Filter URL is empty
                     .filter(permission -> StringUtils.isNotBlank(permission.getUrl()))
                     // Filter Method is empty
@@ -103,14 +103,14 @@ public class AuthorityService {
             AntPathRequestMatcher antPathMatcher = new AntPathRequestMatcher(uri);
             if (antPathMatcher.matches(request)) {
                 if (!urlMapping.get(uri).contains(currentMethod)) {
-                    throw new SecurityException(Status.HTTP_BAD_METHOD);
+                    throw new SecurityException(ResultCode.HTTP_BAD_METHOD);
                 } else {
                     return;
                 }
             }
         }
 
-        throw new SecurityException(Status.REQUEST_NOT_FOUND);
+        throw new SecurityException(ResultCode.REQUEST_NOT_FOUND);
     }
 
     /**

@@ -14,7 +14,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import vn.com.minhlq.commons.Status;
+import vn.com.minhlq.common.ResultCode;
 import vn.com.minhlq.config.CustomConfig;
 import vn.com.minhlq.exception.SecurityException;
 import vn.com.minhlq.security.services.UserDetailsServiceImpl;
@@ -65,7 +65,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 ResponseUtil.renderJson(response, e);
             }
         } else {
-            ResponseUtil.renderJson(response, Status.ACCESS_DENIED, null);
+            ResponseUtil.renderJson(response, ResultCode.ACCESS_DENIED, null);
         }
     }
 
