@@ -9,9 +9,10 @@ import vn.com.minhlq.model.Role;
 import java.util.List;
 
 /**
- * A simple Spring Data {@link JpaRepository} and {@link JpaSpecificationExecutor} for storing {@link Role}s.
+ * A simple Spring Data {@link JpaRepository} and
+ * {@link JpaSpecificationExecutor} for storing {@link Role}s.
  *
- * @author MinhLQ
+ * @author minhlq
  */
 public interface RoleRepository extends JpaRepository<Role, Long>, JpaSpecificationExecutor<Role> {
 

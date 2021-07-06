@@ -6,7 +6,7 @@ import vn.com.minhlq.common.BaseException;
 import vn.com.minhlq.common.ResultCode;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @EqualsAndHashCode(callSuper = true)

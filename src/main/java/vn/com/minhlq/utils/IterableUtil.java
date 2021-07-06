@@ -1,4 +1,4 @@
-package vn.com.minhlq.utils.core;
+package vn.com.minhlq.utils;
 
 import lombok.experimental.UtilityClass;
 import org.apache.commons.collections4.IterableUtils;
@@ -6,7 +6,7 @@ import org.apache.commons.collections4.IterableUtils;
 import java.util.Iterator;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @UtilityClass
 public class IterableUtil extends IterableUtils {

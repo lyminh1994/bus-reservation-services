@@ -5,7 +5,7 @@ CREATE TABLE permission (
   url                   VARCHAR(1000) DEFAULT NULL COMMENT 'When the type is page: it represents the front-end routing, when the type is button: it represents the back-end address',
   type                  INT(2)        NOT NULL COMMENT 'Permission type: page-1, button-2',
   expression            VARCHAR(50)   DEFAULT NULL COMMENT 'Permission expression',
-  method                VARCHAR(50)   DEFAULT NULL COMMENT 'Back-end interface access method',
+  method                VARCHAR(50)   DEFAULT NULL COMMENT 'BackEnd interface access method',
   sort                  INT(11)       NOT NULL COMMENT 'Sort',
   parent_id             BIGINT(64)    NOT NULL COMMENT 'Parent id',
   CONSTRAINT pk_permission PRIMARY KEY (id)

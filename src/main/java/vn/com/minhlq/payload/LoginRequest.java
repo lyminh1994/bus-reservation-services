@@ -5,7 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 public class LoginRequest {

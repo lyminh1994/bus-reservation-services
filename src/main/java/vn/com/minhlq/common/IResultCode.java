@@ -5,7 +5,7 @@ package vn.com.minhlq.common;
  * REST API Error code interface
  * </p>
  *
- * @author MinhLQ
+ * @author minhlq
  */
 public interface IResultCode {
 

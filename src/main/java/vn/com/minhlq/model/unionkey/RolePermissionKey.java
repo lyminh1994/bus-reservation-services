@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @Embeddable

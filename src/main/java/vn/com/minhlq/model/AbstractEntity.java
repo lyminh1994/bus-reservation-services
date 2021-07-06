@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 import java.util.Date;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @MappedSuperclass

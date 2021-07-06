@@ -1,9 +1,9 @@
-package vn.com.minhlq.utils.core;
+package vn.com.minhlq.utils;
 
 import lombok.experimental.UtilityClass;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @UtilityClass
 public class CollectionUtil {

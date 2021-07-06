@@ -1,4 +1,4 @@
-package vn.com.minhlq.config;
+package vn.com.minhlq.security.config;
 
 import com.google.common.collect.Lists;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.List;
  * Ignore configuration
  * </p>
  *
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 public class IgnoreConfig {

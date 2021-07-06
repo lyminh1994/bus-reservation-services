@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import vn.com.minhlq.common.CommonConstants;
+import vn.com.minhlq.common.CommonConst;
 import vn.com.minhlq.model.Permission;
 import vn.com.minhlq.model.Role;
 import vn.com.minhlq.model.User;
@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @NoArgsConstructor
@@ -99,7 +99,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return Objects.equals(this.status, CommonConstants.ENABLE);
+        return Objects.equals(this.status, CommonConst.ENABLE);
     }
 
 }

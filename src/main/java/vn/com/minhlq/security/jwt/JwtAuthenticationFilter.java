@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import vn.com.minhlq.common.ResultCode;
-import vn.com.minhlq.config.CustomConfig;
+import vn.com.minhlq.security.config.CustomConfig;
 import vn.com.minhlq.exception.SecurityException;
 import vn.com.minhlq.security.services.UserDetailsServiceImpl;
 import vn.com.minhlq.utils.ResponseUtil;
@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.Set;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Slf4j
 @Component
@@ -63,9 +63,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
             } catch (SecurityException e) {
                 ResponseUtil.renderJson(response, e);
+                log.error("###doFilterInternal###", e.getMessage());
             }
         } else {
             ResponseUtil.renderJson(response, ResultCode.ACCESS_DENIED, null);
+            log.info("###doFilterInternal###", "JWT is blank!");
         }
     }
 

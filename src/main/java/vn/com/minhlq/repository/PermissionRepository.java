@@ -9,9 +9,10 @@ import vn.com.minhlq.model.Permission;
 import java.util.List;
 
 /**
- * A simple Spring Data {@link JpaRepository} and {@link JpaSpecificationExecutor} for storing {@link Permission}s.
+ * A simple Spring Data {@link JpaRepository} and
+ * {@link JpaSpecificationExecutor} for storing {@link Permission}s.
  *
- * @author MinhLQ
+ * @author minhlq
  */
 public interface PermissionRepository extends JpaRepository<Permission, Long>, JpaSpecificationExecutor<Permission> {
 

@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 public class EmailValidator implements ConstraintValidator<ValidEmail, String> {
 

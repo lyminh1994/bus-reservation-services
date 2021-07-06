@@ -6,9 +6,10 @@ import vn.com.minhlq.model.RolePermission;
 import vn.com.minhlq.model.unionkey.RolePermissionKey;
 
 /**
- * A simple Spring Data {@link JpaRepository} and {@link JpaSpecificationExecutor} for storing {@link RolePermission}s.
+ * A simple Spring Data {@link JpaRepository} and
+ * {@link JpaSpecificationExecutor} for storing {@link RolePermission}s.
  *
- * @author MinhLQ
+ * @author minhlq
  */
 public interface RolePermissionRepository extends JpaRepository<RolePermission, RolePermissionKey>, JpaSpecificationExecutor<RolePermission> {
 }

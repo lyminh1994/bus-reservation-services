@@ -8,9 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * A simple Spring Data {@link JpaRepository} and {@link JpaSpecificationExecutor} for storing {@link User}s.
+ * A simple Spring Data {@link JpaRepository} and
+ * {@link JpaSpecificationExecutor} for storing {@link User}s.
  *
- * @author MinhLQ
+ * @author minhlq
  */
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 

@@ -2,16 +2,15 @@ package vn.com.minhlq.utils;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import vn.com.minhlq.common.ApiResponse;
+import vn.com.minhlq.common.R;
 import vn.com.minhlq.common.BaseException;
 import vn.com.minhlq.common.IResultCode;
-import vn.com.minhlq.utils.core.JSONUtil;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Slf4j
 @UtilityClass
@@ -30,7 +29,7 @@ public class ResponseUtil {
             response.setHeader("Access-Control-Allow-Methods", "*");
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(200);
-            response.getWriter().write(JSONUtil.toJsonStr(ApiResponse.ofCode(status, data)));
+            response.getWriter().write(JSONUtil.toJsonStr(R.ofCode(status, data)));
         } catch (IOException e) {
             log.error("Response writes JSON exception，", e);
         }
@@ -48,7 +47,7 @@ public class ResponseUtil {
             response.setHeader("Access-Control-Allow-Methods", "*");
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(200);
-            response.getWriter().write(JSONUtil.toJsonStr(ApiResponse.ofException(exception)));
+            response.getWriter().write(JSONUtil.toJsonStr(R.ofException(exception)));
         } catch (IOException e) {
             log.error("Response writes JSON exception，", e);
         }

@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Service
 @Transactional

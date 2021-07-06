@@ -1,10 +1,10 @@
-package vn.com.minhlq.config;
+package vn.com.minhlq.security.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @ConfigurationProperties(prefix = "custom.config")

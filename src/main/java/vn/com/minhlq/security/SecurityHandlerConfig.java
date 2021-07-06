@@ -7,7 +7,7 @@ import vn.com.minhlq.common.ResultCode;
 import vn.com.minhlq.utils.ResponseUtil;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Configuration
 public class SecurityHandlerConfig {

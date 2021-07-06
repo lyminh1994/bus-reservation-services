@@ -7,7 +7,7 @@ import lombok.Getter;
  * General status code
  * </p>
  *
- * @author MinhLQ
+ * @author minhlq
  */
 @Getter
 public enum ResultCode implements IResultCode {

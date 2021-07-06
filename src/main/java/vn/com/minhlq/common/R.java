@@ -7,20 +7,31 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public final class ApiResponse implements Serializable {
-
+public final class R<T> implements Serializable {
     private static final long serialVersionUID = 8993485788201922830L;
 
     private Integer code;
 
     private String message;
 
-    private Object data;
+    private T data;
+
+    public R(IResultCode resultCode) {
+        this.code = resultCode.getCode();
+        this.message = resultCode.getMessage();
+        this.data = null;
+    }
+
+    public R(IResultCode resultCode, T data) {
+        this.code = resultCode.getCode();
+        this.message = resultCode.getMessage();
+        this.data = data;
+    }
 
     /**
      * Construct a custom API return
@@ -30,8 +41,8 @@ public final class ApiResponse implements Serializable {
      * @param data    Return results
      * @return ApiResponse
      */
-    public static ApiResponse of(Integer code, String message, Object data) {
-        return new ApiResponse(code, message, data);
+    public static <T> R<T> of(Integer code, String message, T data) {
+        return new R<T>(code, message, data);
     }
 
     /**
@@ -39,7 +50,7 @@ public final class ApiResponse implements Serializable {
      *
      * @return ApiResponse
      */
-    public static ApiResponse ofSuccess() {
+    public static <T> R<T> ofSuccess() {
         return ofSuccess(null);
     }
 
@@ -49,7 +60,7 @@ public final class ApiResponse implements Serializable {
      * @param data Return data
      * @return ApiResponse
      */
-    public static ApiResponse ofSuccess(Object data) {
+    public static <T> R<T> ofSuccess(T data) {
         return ofCode(ResultCode.SUCCESS, data);
     }
 
@@ -59,7 +70,7 @@ public final class ApiResponse implements Serializable {
      * @param message Return content
      * @return ApiResponse
      */
-    public static ApiResponse ofMessage(String message) {
+    public static <T> R<T> ofMessage(String message) {
         return of(ResultCode.SUCCESS.getCode(), message, null);
     }
 
@@ -69,7 +80,7 @@ public final class ApiResponse implements Serializable {
      * @param resultCode Status {@link ResultCode}
      * @return ApiResponse
      */
-    public static ApiResponse ofCode(ResultCode resultCode) {
+    public static <T> R<T> ofCode(ResultCode resultCode) {
         return ofCode(resultCode, null);
     }
 
@@ -80,7 +91,7 @@ public final class ApiResponse implements Serializable {
      * @param data   Return data
      * @return ApiResponse
      */
-    public static ApiResponse ofCode(IResultCode status, Object data) {
+    public static <T> R<T> ofCode(IResultCode status, T data) {
         return of(status.getCode(), status.getMessage(), data);
     }
 
@@ -88,10 +99,10 @@ public final class ApiResponse implements Serializable {
      * Construct an abnormal API return
      *
      * @param t   abnormal
-     * @param <T> {@link BaseException}  Subclass
+     * @param <T> {@link BaseException} Subclass
      * @return ApiResponse
      */
-    public static <T extends BaseException> ApiResponse ofException(T t) {
+    public static <T extends BaseException> R<?> ofException(T t) {
         return of(t.getCode(), t.getMessage(), t.getData());
     }
 }

@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @Entity

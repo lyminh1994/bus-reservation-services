@@ -16,12 +16,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import vn.com.minhlq.config.CustomConfig;
+import vn.com.minhlq.security.config.CustomConfig;
 import vn.com.minhlq.security.jwt.JwtAuthenticationFilter;
 import vn.com.minhlq.security.services.UserDetailsServiceImpl;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Configuration
 @EnableWebSecurity

@@ -6,7 +6,7 @@ import vn.com.minhlq.validation.ValidEmail;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 public class RegisterRequest {

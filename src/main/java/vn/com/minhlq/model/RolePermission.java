@@ -7,7 +7,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Data
 @Entity

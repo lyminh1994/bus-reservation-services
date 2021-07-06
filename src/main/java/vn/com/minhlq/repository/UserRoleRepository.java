@@ -6,9 +6,10 @@ import vn.com.minhlq.model.UserRole;
 import vn.com.minhlq.model.unionkey.UserRoleKey;
 
 /**
- * A simple Spring Data {@link JpaRepository} and {@link JpaSpecificationExecutor} for storing {@link UserRole}s.
+ * A simple Spring Data {@link JpaRepository} and
+ * {@link JpaSpecificationExecutor} for storing {@link UserRole}s.
  *
- * @author MinhLQ
+ * @author minhlq
  */
 public interface UserRoleRepository extends JpaRepository<UserRole, UserRoleKey>, JpaSpecificationExecutor<UserRole> {
 }

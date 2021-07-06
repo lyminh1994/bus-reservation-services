@@ -12,7 +12,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.mvc.condition.RequestMethodsRequestCondition;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-import vn.com.minhlq.common.CommonConstants;
+import vn.com.minhlq.common.CommonConst;
 import vn.com.minhlq.common.ResultCode;
 import vn.com.minhlq.exception.SecurityException;
 import vn.com.minhlq.model.Permission;
@@ -28,7 +28,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @Component
 @AllArgsConstructor
@@ -64,7 +64,7 @@ public class AuthorityService {
             // Obtain resources, front and back ends are separated, so page permissions are filtered, and only button permissions are reserved
             List<Permission> btnPerms = permissions.stream()
                     // Filter page permissions
-                    .filter(permission -> Objects.equals(permission.getType(), CommonConstants.BUTTON))
+                    .filter(permission -> Objects.equals(permission.getType(), CommonConst.BUTTON))
                     // Filter URL is empty
                     .filter(permission -> StringUtils.isNotBlank(permission.getUrl()))
                     // Filter Method is empty

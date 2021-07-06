@@ -4,10 +4,10 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class CommonConstants {
+public final class CommonConst {
 
     public static final Integer ENABLE = 1;
 
@@ -19,14 +19,10 @@ public final class CommonConstants {
 
     public static final String REDIS_JWT_KEY_PREFIX = "security:jwt:";
 
-    public static final String SYMBOL_STAR = "*";
-
-    public static final String SYMBOL_EMAIL = "@";
-
     public static final Integer DEFAULT_CURRENT_PAGE = 1;
 
     public static final Integer DEFAULT_PAGE_SIZE = 10;
 
-    public static final String ANONYMOUS_NAME = "anonymous";
+    public static final String ANONYMOUS_NAME = "Anonymous";
 
 }

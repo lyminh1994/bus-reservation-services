@@ -1,11 +1,11 @@
-package vn.com.minhlq.utils.core;
+package vn.com.minhlq.utils;
 
 import com.google.gson.Gson;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author MinhLQ
+ * @author minhlq
  */
 @UtilityClass
 public class JSONUtil {
