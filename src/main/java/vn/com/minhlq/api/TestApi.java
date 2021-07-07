@@ -11,34 +11,34 @@ import vn.com.minhlq.common.R;
 @Slf4j
 @RestController
 @Tag(name = "Test Controller")
-public class TestController {
+public class TestApi {
 
     @GetMapping("/test")
-    public R list() {
+    public R<?> list() {
         log.info("Test list query");
         return R.ofSuccess("Test list");
     }
 
     @GetMapping("/test/{id}")
-    public R get(@PathVariable String id) {
+    public R<?> get(@PathVariable String id) {
         log.info("Test query");
         return R.ofSuccess("Test single " + id);
     }
 
     @PostMapping("/test")
-    public R add() {
+    public R<?> add() {
         log.info("Test list added");
         return R.ofSuccess("Test add");
     }
 
     @PutMapping("/test/{id}")
-    public R update(@PathVariable Long id) {
+    public R<?> update(@PathVariable Long id) {
         log.info("Test modification");
         return R.ofSuccess("Test update " + id);
     }
 
     @DeleteMapping("/test/{id}")
-    public R delete(@PathVariable Long id) {
+    public R<?> delete(@PathVariable Long id) {
         log.info("Test remove");
         return R.ofSuccess("Test delete " + id);
     }

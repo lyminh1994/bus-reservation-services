@@ -31,7 +31,7 @@ import javax.validation.Valid;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @Tag(name = "Authentication")
-public class AuthController {
+public class AuthApi {
 
     private final JwtUtils jwtUtils;
 
