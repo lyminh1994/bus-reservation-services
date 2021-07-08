@@ -1,7 +1,7 @@
 package vn.com.minhlq.payload;
 
 import lombok.Data;
-import vn.com.minhlq.validation.ValidEmail;
+import vn.com.minhlq.validation.EmailConstraint;
 
 import javax.validation.constraints.NotBlank;
 
@@ -15,7 +15,7 @@ public class RegisterRequest {
     private String username;
 
     @NotBlank
-    @ValidEmail
+    @EmailConstraint
     private String email;
 
     @NotBlank

@@ -1,9 +1,9 @@
 package vn.com.minhlq.service;
 
-import vn.com.minhlq.model.Permission;
-
 import java.util.List;
 import java.util.Optional;
+
+import vn.com.minhlq.model.Permission;
 
 public interface PermissionService {
 

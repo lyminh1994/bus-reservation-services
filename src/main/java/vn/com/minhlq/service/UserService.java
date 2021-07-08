@@ -1,9 +1,11 @@
 package vn.com.minhlq.service;
 
-import vn.com.minhlq.model.User;
-
 import java.util.List;
 import java.util.Optional;
+
+import vn.com.minhlq.dto.RegisterParam;
+import vn.com.minhlq.dto.UpdateUserCommand;
+import vn.com.minhlq.model.User;
 
 public interface UserService {
 
@@ -11,8 +13,12 @@ public interface UserService {
 
     List<User> findAll();
 
-    User save(User user);
+    void save(User user);
 
     void delete(Long id);
+
+    User createUser(RegisterParam registerParam);
+
+    void updateUser(UpdateUserCommand command);
 
 }

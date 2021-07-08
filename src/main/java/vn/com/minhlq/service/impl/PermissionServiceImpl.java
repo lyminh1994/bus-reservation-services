@@ -1,17 +1,16 @@
 package vn.com.minhlq.service.impl;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import lombok.RequiredArgsConstructor;
 import vn.com.minhlq.model.Permission;
 import vn.com.minhlq.repository.PermissionRepository;
 import vn.com.minhlq.service.PermissionService;
 
-import java.util.List;
-import java.util.Optional;
-
-@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor

@@ -1,0 +1,97 @@
+########## Server config ##########
+server:
+  port: 8081
+  servlet:
+    context-path: /
+
+########## Spring config ##########
+spring:
+  datasource:
+    hikari:
+      username: root
+      password: Root@1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/spring_boot_demo
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: validate
+    open-in-view: true
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+  mvc:
+    throw-exception-if-no-handler-found: true
+  redis:
+    host: localhost
+    port: 6379
+    # Connection timeout (remember to add unit, Duration)
+    timeout: 10000ms
+    # Redis has 16 parts by default, and the specific parts were configured here
+    # database: 0
+    lettuce:
+      pool:
+        # The maximum number of connections in the connection pool (use a negative value to indicate unlimited) Default 8
+        max-active: 8
+        # The maximum blocking waiting time of the connection pool (use a negative value to indicate unlimited) Default -1
+        max-wait: -1ms
+        # Maximum idle connection in the connection pool Default 8
+        max-idle: 8
+        # The smallest idle connection in the connection pool Default 0
+        min-idle: 0
+  devtools:
+    add-properties: false
+########## MyBatis config ##########
+mybatis:
+  configuration:
+    cache-enabled: true
+    default-statement-timeout: 3000
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+  type-handlers-package: vn.com.minhlq.mybatis
+  mapper-locations: mapper/*.xml
+
+########## Logging config ##########
+logging:
+  level: 
+    web: debug error warn
+    "[vn.com.minhlq.mybatis]": debug error warn
+
+########## JWT config ##########
+jwt:
+  config:
+    secret: nRvyYC4soFxBdZ-F-5Nnzz5USXstR1YylsTd-mA0aKtI9HUlriGrtkf-TiuDapkLiUCogO3JOK7kwZisrHp6wA
+    ttl: 600000
+    remember: 604800000
+
+########## Swagger config ##########
+springdoc:
+  version: "@project.version@"
+  description: "@project.description@"
+  api-docs:
+    path: /api-docs
+    groups:
+      enabled: true
+  swagger-ui:
+    display-request-duration: true
+    groups-order: ASC
+    operationsSorter: method
+    disable-swagger-default-url: true
+    use-root-path: true
+  show-actuator: true
+
+########## Custom config ##########
+custom:
+  config:
+    ignores:
+      # Requests that no need to be filtered, unlimited methods
+      pattern:
+        - /swagger-ui.html
+        - /swagger-ui/**
+        - /api-docs/**
+        - /test/**
+      # Post requests that no need to be filtered
+      post:
+        - /auth/login
+        - /auth/logout
