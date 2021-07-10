@@ -1,15 +1,14 @@
 package vn.com.minhlq.utils;
 
-import lombok.experimental.UtilityClass;
-import org.apache.commons.collections4.IterableUtils;
-
 import java.util.Iterator;
+
+import lombok.experimental.UtilityClass;
 
 /**
  * @author minhlq
  */
 @UtilityClass
-public class IterableUtil extends IterableUtils {
+public class IterableUtils extends org.apache.commons.collections4.IterableUtils {
 
     public <T> T getFirst(Iterator<T> iterator) {
         return null != iterator && iterator.hasNext() ? iterator.next() : null;

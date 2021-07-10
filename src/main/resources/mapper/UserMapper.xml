@@ -14,66 +14,67 @@
     </resultMap>
 
     <insert id="insert">
-        insert into users (id, username, email, password) values(
-          #{user.id},
-          #{user.username},
-          #{user.email},
-          #{user.password},
+        INSERT INTO user(id, username, email, password)
+        VALUES (
+            #{user.id},
+            #{user.username},
+            #{user.email},
+            #{user.password},
         )
     </insert>
 
     <insert id="saveRelation">
-        insert into follows(user_id, follow_id) values (#{follow.userId}, #{follow.targetId})
+        INSERT INTO follow(user_id, follow_id) VALUES (#{follow.userId}, #{follow.targetId})
     </insert>
 
     <update id="update">
-        update users
+        UPDATE users
         <set>
             <if test="user.username != ''">username = #{user.username},</if>
             <if test="user.email != ''">email = #{user.email},</if>
             <if test="user.password != ''">password = #{user.password},</if>
         </set>
-        where id = #{user.id}
+        WHERE id = #{user.id}
     </update>
 
     <delete id="deleteRelation">
-        delete from follows where user_id = #{follow.userId} and follow_id = #{follow.targetId}
+        DELETE FROM follow WHERE user_id = #{follow.userId} AND follow_id = #{follow.targetId}
     </delete>
 
     <select id="findByUsername" resultMap="user">
-        select * from users where username = #{username}
+        SELECT * FROM users WHERE username = #{username}
     </select>
 
     <select id="findByEmail" resultMap="user">
-        select id, username, email, password from users where email = #{email}
+        SELECT * FROM users WHERE email = #{email}
     </select>
 
     <select id="findById" resultMap="user">
-        select id, username, email, password from users where id = #{id}
+        SELECT * FROM users WHERE id = #{id}
     </select>
 
     <select id="findRelation" resultMap="follow">
         SELECT
-          F.user_id followUserId,
-          F.follow_id followTargetId
-        from follows F
-        where F.user_id = #{userId} and F.follow_id = #{targetId}
+          F.user_id AS followUserId,
+          F.follow_id AS followTargetId
+        FROM follow F
+        WHERE F.user_id = #{userId} AND F.follow_id = #{targetId}
     </select>
 
     <select id="finAll" resultMap="user">
-        SELECT * from user
+        SELECT * FROM user
     </select>
 
     <delete id="deleteById">
-        delete from user where id = #{id}
+        DELETE FROM user WHERE id = #{id}
     </delete>
 
     <select id="findByUsernameOrEmailOrPhone" resultMap="user">
-        SELECT * from user where username = #{username} or email = #{email} or phone = #{phone}
+        SELECT * FROM user WHERE username = #{username} OR email = #{email} OR phone = #{phone}
     </select>
 
     <select id="findByUsernameIn" resultMap="user">
-        SELECT * from user where username in
+        SELECT * FROM user WHERE username IN
         <foreach collection="usernames" item="item" separator="," open="(" close=")">
             #{item}
         </foreach>

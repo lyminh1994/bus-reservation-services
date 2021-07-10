@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="vn.com.minhlq.mybatis.service.CommentReadService">
+<mapper namespace="vn.com.minhlq.mybatis.service.CommentService">
     <sql id="selectCommentData">
         SELECT
-        C.id commentId,
-        C.body commentBody,
-        C.created_at commentCreatedAt,
-        C.article_id commentArticleId,
-        <include refid="vn.com.minhlq.mybatis.service.ArticleReadService.profileColumns" />
-        from comments C
-        left join users U
-        on C.user_id = U.id
+        C.id AS commentId,
+            C.body AS commentBody,
+            C.created_at AS commentCreatedAt,
+            C.article_id AS commentArticleId,
+        <include refid="vn.com.minhlq.mybatis.service.ArticleService.profileColumns" />
+        FROM comment C
+        LEFT JOIN users U ON C.user_id = U.id
     </sql>
 
     <select id="findById" resultMap="transfer.data.commentData">
         <include refid="selectCommentData" />
-        where C.id = #{id}
+        WHERE C.id = #{id}
     </select>
 
     <select id="findByArticleId" resultMap="transfer.data.commentData">
         <include refid="selectCommentData" />
-        where C.article_id = #{articleId}
+        WHERE C.article_id = #{articleId}
     </select>
 
     <select id="findByArticleIdWithCursor" resultMap="transfer.data.commentData">
@@ -35,10 +34,10 @@
         </if>
         </where>
         <if test='page.direction.name() == "NEXT"'>
-            order by C.created_at desc
+            ORDER BY C.created_at DESC
         </if>
         <if test='page.direction.name() == "PREV"'>
-            order by C.created_at asc
+            ORDER BY C.created_at ASC
         </if>
     </select>
 </mapper>

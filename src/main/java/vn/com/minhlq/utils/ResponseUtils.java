@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 @Slf4j
 @UtilityClass
-public class ResponseUtil {
+public class ResponseUtils {
 
     /**
      * Write json to response
@@ -29,7 +29,7 @@ public class ResponseUtil {
             response.setHeader("Access-Control-Allow-Methods", "*");
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(200);
-            response.getWriter().write(JSONUtil.toJsonStr(R.ofCode(status, data)));
+            response.getWriter().write(JSONUtils.toJsonStr(R.ofCode(status, data)));
         } catch (IOException e) {
             log.error("Response writes JSON exception，", e);
         }
@@ -47,7 +47,7 @@ public class ResponseUtil {
             response.setHeader("Access-Control-Allow-Methods", "*");
             response.setContentType("application/json;charset=UTF-8");
             response.setStatus(200);
-            response.getWriter().write(JSONUtil.toJsonStr(R.ofException(exception)));
+            response.getWriter().write(JSONUtils.toJsonStr(R.ofException(exception)));
         } catch (IOException e) {
             log.error("Response writes JSON exception，", e);
         }

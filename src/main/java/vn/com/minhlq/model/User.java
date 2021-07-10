@@ -1,11 +1,7 @@
 package vn.com.minhlq.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,34 +11,33 @@ import lombok.NoArgsConstructor;
  * @author minhlq
  */
 @Data
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String username;
 
     private String password;
 
-    private String nickname;
+    private String firstName;
+
+    private String lastName;
 
     private String phone;
 
     private String email;
 
-    private Long birthday;
+    private DateTime birthday;
 
     private Integer gender;
 
     private Integer status;
 
-    private Long createTime;
+    private DateTime createAt;
 
-    private Long updateTime;
+    private DateTime updateAt;
 
     public User(String email, String username, String password) {
         this.email = email;

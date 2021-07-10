@@ -14,8 +14,8 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import vn.com.minhlq.common.R;
 import vn.com.minhlq.common.BaseException;
 import vn.com.minhlq.common.ResultCode;
-import vn.com.minhlq.utils.CollectionUtil;
-import vn.com.minhlq.utils.JSONUtil;
+import vn.com.minhlq.utils.CollectionUtils;
+import vn.com.minhlq.utils.JSONUtils;
 
 import javax.validation.ConstraintViolationException;
 
@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
             log.error(
                     "[Global Exception] HttpRequestMethodNotSupportedException: Current request method {}, Support request method {}",
                     ((HttpRequestMethodNotSupportedException) e).getMethod(),
-                    JSONUtil.toJsonStr(((HttpRequestMethodNotSupportedException) e).getSupportedHttpMethods()));
+                    JSONUtils.toJsonStr(((HttpRequestMethodNotSupportedException) e).getSupportedHttpMethods()));
             return R.ofCode(ResultCode.HTTP_BAD_METHOD);
         } else if (e instanceof MethodArgumentNotValidException) {
             log.error("[Global Exception] MethodArgumentNotValidException", e);
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
         } else if (e instanceof ConstraintViolationException) {
             log.error("[Global Exception] ConstraintViolationException", e);
             return R.of(ResultCode.BAD_REQUEST.getCode(),
-                    CollectionUtil.getFirst(((ConstraintViolationException) e).getConstraintViolations()).getMessage(),
+                    CollectionUtils.getFirst(((ConstraintViolationException) e).getConstraintViolations()).getMessage(),
                     null);
         } else if (e instanceof MethodArgumentTypeMismatchException) {
             log.error("[Global Exception] MethodArgumentTypeMismatchException: Parameter name {}, Error message {}",

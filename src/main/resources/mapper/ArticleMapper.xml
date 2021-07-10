@@ -19,8 +19,8 @@
     </resultMap>
 
     <insert id="insert">
-        insert into articles(id, slug, title, description, body, user_id, created_at, updated_at)
-        values(
+        INSERT INTO article(id, slug, title, description, body, user_id, created_at, updated_at)
+        VALUES (
           #{article.id},
           #{article.slug},
           #{article.title},
@@ -28,60 +28,61 @@
           #{article.body},
           #{article.userId},
           #{article.createdAt},
-          #{article.updatedAt})
+          #{article.updatedAt}
+        )
     </insert>
 
     <insert id="insertTag">
-        insert into tags (id, name) values (#{tag.id}, #{tag.name})
+        INSERT INTO tags(id, name) VALUES (#{tag.id}, #{tag.name})
     </insert>
 
     <insert id="insertArticleTagRelation">
-        insert into article_tags (article_id, tag_id) values(#{articleId}, #{tagId})
+        INSERT INTO article_tags(article_id, tag_id) VALUES (#{articleId}, #{tagId})
     </insert>
 
     <update id="update">
-        update articles
+        UPDATE article
         <set>
             <if test="article.title != ''">title = #{article.title},</if>
             <if test="article.title != ''">slug = #{article.slug},</if>
             <if test="article.description != ''">description = #{article.description},</if>
             <if test="article.body != ''">body = #{article.body}</if>
         </set>
-        where id = #{article.id}
+        WHERE id = #{article.id}
     </update>
 
     <delete id="delete">
-        delete from articles where id = #{id}
+        DELETE FROM article WHERE id = #{id}
     </delete>
 
     <sql id="selectArticle">
-        select
-        A.id articleId,
-        A.slug articleSlug,
-        A.title articleTitle,
-        A.description articleDescription,
-        A.body articleBody,
-        A.user_id articleUserId,
-        A.created_at articleCreatedAt,
-        A.updated_at articleUpdatedAt,
-        T.id tagId,
-        T.name tagName
-        from articles A
-        left join article_tags AT on A.id = AT.article_id
-        left join tags T on T.id = AT.tag_id
+        SELECT
+        A.id AS articleId,
+        A.slug AS articleSlug,
+        A.title AS articleTitle,
+        A.description AS articleDescription,
+        A.body AS articleBody,
+        A.user_id AS articleUserId,
+        A.created_at AS articleCreatedAt,
+        A.updated_at AS articleUpdatedAt,
+        T.id AS tagId,
+        T.name AS tagName
+        FROM article A
+        LEFT JOIN article_tags AT ON A.id = AT.article_id
+        LEFT JOIN tags T ON T.id = AT.tag_id
     </sql>
 
     <select id="findById" resultMap="article">
         <include refid="selectArticle" />
-        where A.id = #{id}
+        WHERE A.id = #{id}
     </select>
 
     <select id="findTag" resultType="vn.com.minhlq.model.Tag">
-        select id, name from tags where name = #{tagName}
+        SELECT id, name FROM tags WHERE name = #{tagName}
     </select>
 
     <select id="findBySlug" resultMap="article">
         <include refid="selectArticle" />
-        where A.slug = #{slug}
+        WHERE A.slug = #{slug}
     </select>
 </mapper>

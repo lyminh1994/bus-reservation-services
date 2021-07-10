@@ -10,29 +10,29 @@
     </resultMap>
 
     <insert id="insert">
-        insert into comments(id, body, user_id, article_id, created_at, updated_at)
+        INSERT INTO comment(id, body, user_id, article_id, created_at, updated_at)
         values (
-          #{comment.id},
-          #{comment.body},
-          #{comment.userId},
-          #{comment.articleId},
-          #{comment.createdAt},
-          #{comment.createdAt}
+            #{comment.id},
+            #{comment.body},
+            #{comment.userId},
+            #{comment.articleId},
+            #{comment.createdAt},
+            #{comment.createdAt}
         )
     </insert>
 
     <delete id="delete">
-        delete from comments where id = #{id}
+        DELETE FROM comment WHERE id = #{id}
     </delete>
 
     <select id="findById" resultMap="comment">
-        select
-          id commentId,
-          body commentBody,
-          user_id commentUserId,
-          article_id commentArticleId,
-          created_at commentCreatedAt
-        from comments
-        where id = #{id} and article_id = #{articleId}
+        SELECT
+            id AS commentId,
+            body AS commentBody,
+            user_id AS commentUserId,
+            article_id AS commentArticleId,
+            created_at AS commentCreatedAt
+        FROM comment
+        WHERE id = #{id} AND article_id = #{articleId}
     </select>
 </mapper>

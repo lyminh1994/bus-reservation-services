@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @JsonRootName("comment")
 public class NewCommentParam {
 
-    @NotBlank(message = "can't be empty")
+    @NotBlank(message = "Comment body can't be empty")
     private String body;
 
 }

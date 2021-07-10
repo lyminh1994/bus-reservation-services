@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface UserRelationshipQueryService {
+public interface UserRelationshipService {
 
     boolean isUserFollowing(@Param("userId") Long userId, @Param("anotherUserId") Long anotherUserId);
 

@@ -28,7 +28,7 @@ import vn.com.minhlq.model.User;
 import vn.com.minhlq.repository.ArticleRepository;
 import vn.com.minhlq.repository.CommentRepository;
 import vn.com.minhlq.service.CommentQueryService;
-import vn.com.minhlq.utils.AuthorizationUtil;
+import vn.com.minhlq.utils.AuthorizationUtils;
 
 @Tag(name = "Article Comments")
 @RestController
@@ -68,7 +68,7 @@ public class CommentsApi {
             @AuthenticationPrincipal User user) {
         Article article = articleRepository.findBySlug(slug).orElseThrow(ResourceNotFoundException::new);
         return commentRepository.findById(article.getId(), commentId).map(comment -> {
-            if (!AuthorizationUtil.canWriteComment(user, article, comment)) {
+            if (!AuthorizationUtils.canWriteComment(user, article, comment)) {
                 throw new NoAuthorizationException();
             }
             commentRepository.remove(comment);

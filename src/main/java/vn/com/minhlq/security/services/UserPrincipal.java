@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,21 +34,23 @@ public class UserPrincipal implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private String nickname;
+    private String firsName;
+
+    private String lastName;
 
     private String phone;
 
     private String email;
 
-    private Long birthday;
+    private DateTime birthday;
 
     private Integer sex;
 
     private Integer status;
 
-    private Long createTime;
+    private DateTime createAt;
 
-    private Long updateTime;
+    private DateTime updateAt;
 
     private List<String> roles;
 
@@ -61,10 +64,11 @@ public class UserPrincipal implements UserDetails {
 
         List<GrantedAuthority> authorities = permissions.stream()
                 .filter(permission -> StringUtils.isNotBlank(permission.getExpression()))
-                .map(permission -> new SimpleGrantedAuthority(permission.getExpression()))
-                .collect(Collectors.toList());
+                .map(permission -> new SimpleGrantedAuthority(permission.getExpression())).collect(Collectors.toList());
 
-        return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), user.getNickname(), user.getPhone(), user.getEmail(), user.getBirthday(), user.getGender(), user.getStatus(), user.getCreateTime(), user.getUpdateTime(), roleNames, authorities);
+        return new UserPrincipal(user.getId(), user.getUsername(), user.getPassword(), user.getFirstName(),
+                user.getLastName(), user.getPhone(), user.getEmail(), user.getBirthday(), user.getGender(),
+                user.getStatus(), user.getCreateAt(), user.getUpdateAt(), roleNames, authorities);
     }
 
     @Override

@@ -10,7 +10,7 @@ import vn.com.minhlq.dto.ArticleFavoriteCount;
 import vn.com.minhlq.model.User;
 
 @Mapper
-public interface ArticleFavoritesReadService {
+public interface ArticleFavoritesService {
 
     boolean isUserFavorite(@Param("userId") Long userId, @Param("articleId") Long articleId);
 

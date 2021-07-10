@@ -6,7 +6,7 @@ import vn.com.minhlq.model.Comment;
 import vn.com.minhlq.model.User;
 
 @UtilityClass
-public class AuthorizationUtil {
+public class AuthorizationUtils {
 
     public boolean canWriteArticle(User user, Article article) {
         return user.getId().equals(article.getUserId());

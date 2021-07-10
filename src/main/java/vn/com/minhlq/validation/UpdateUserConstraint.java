@@ -10,7 +10,7 @@ import javax.validation.Constraint;
 @Retention(RUNTIME)
 public @interface UpdateUserConstraint {
 
-    String message() default "invalid update param";
+    String message() default "Invalid update param";
 
     Class<?>[] groups() default {};
 

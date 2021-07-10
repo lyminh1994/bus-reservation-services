@@ -14,8 +14,8 @@ import vn.com.minhlq.dto.UpdateUserCommand;
 import vn.com.minhlq.dto.UpdateUserParam;
 import vn.com.minhlq.model.User;
 import vn.com.minhlq.repository.UserRepository;
-import vn.com.minhlq.service.EncryptService;
 import vn.com.minhlq.service.UserService;
+import vn.com.minhlq.utils.CryptoUtils;
 
 @Service
 @Transactional
@@ -23,8 +23,6 @@ import vn.com.minhlq.service.UserService;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
-
-    private EncryptService encryptService;
 
     @Override
     public Optional<User> findById(Long id) {
@@ -49,7 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(@Valid RegisterParam registerParam) {
         User user = new User(registerParam.getEmail(), registerParam.getUsername(),
-                encryptService.encrypt(registerParam.getPassword()));
+                CryptoUtils.encrypt(registerParam.getPassword()));
         userRepository.save(user);
         return user;
     }

@@ -7,18 +7,21 @@
     </resultMap>
 
     <insert id="insert">
-        insert into article_favorites (article_id, user_id) values (#{articleFavorite.articleId}, #{articleFavorite.userId})
+        INSERT INTO article_favorite(article_id, user_id) VALUES (#{articleFavorite.articleId}, #{articleFavorite.userId})
     </insert>
 
     <delete id="delete">
-        delete from article_favorites where article_id = #{favorite.articleId} and user_id = #{favorite.userId}
+        DELETE FROM article_favorite WHERE article_id = #{favorite.articleId} AND user_id = #{favorite.userId}
     </delete>
 
     <select id="find" resultMap="articleFavorite">
-        select
-          AF.article_id articleFavoriteArticleId,
-          AF.user_id articleFavoriteUserId
-          from article_favorites AF
-          where AF.article_id = #{articleId} and AF.user_id = #{userId}
+        SELECT
+            AF.article_id AS articleFavoriteArticleId,
+            AF.user_id AS articleFavoriteUserId
+        FROM
+            article_favorite AF
+        WHERE 
+            AF.article_id = #{articleId}
+            AND AF.user_id = #{userId}
     </select>
 </mapper>

@@ -2,11 +2,11 @@ package vn.com.minhlq.model;
 
 import static java.util.stream.Collectors.toList;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.joda.time.DateTime;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,15 +29,16 @@ public class Article {
 
     private List<Tag> tags;
 
-    private Long createdAt;
+    private DateTime createdAt;
 
-    private Long updatedAt;
+    private DateTime updatedAt;
 
     public Article(String title, String description, String body, List<String> tagList, Long userId) {
-        this(title, description, body, tagList, userId, new Date().getTime());
+        this(title, description, body, tagList, userId, new DateTime());
     }
 
-    public Article(String title, String description, String body, List<String> tagList, Long userId, Long createdAt) {
+    public Article(String title, String description, String body, List<String> tagList, Long userId,
+            DateTime createdAt) {
         this.slug = toSlug(title);
         this.title = title;
         this.description = description;
@@ -52,15 +53,15 @@ public class Article {
         if (!StringUtils.isEmpty(title)) {
             this.title = title;
             this.slug = toSlug(title);
-            this.updatedAt = new Date().getTime();
+            this.updatedAt = new DateTime();
         }
         if (!StringUtils.isEmpty(description)) {
             this.description = description;
-            this.updatedAt = new Date().getTime();
+            this.updatedAt = new DateTime();
         }
         if (!StringUtils.isEmpty(body)) {
             this.body = body;
-            this.updatedAt = new Date().getTime();
+            this.updatedAt = new DateTime();
         }
     }
 

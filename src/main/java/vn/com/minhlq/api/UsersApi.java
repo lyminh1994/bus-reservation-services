@@ -21,9 +21,9 @@ import vn.com.minhlq.dto.UserWithToken;
 import vn.com.minhlq.exception.InvalidAuthenticationException;
 import vn.com.minhlq.model.User;
 import vn.com.minhlq.repository.UserRepository;
-import vn.com.minhlq.service.EncryptService;
 import vn.com.minhlq.service.UserQueryService;
 import vn.com.minhlq.service.UserService;
+import vn.com.minhlq.utils.CryptoUtils;
 
 @Tag(name = "Users")
 @RestController
@@ -34,8 +34,6 @@ public class UsersApi {
     private UserRepository userRepository;
 
     private UserQueryService userQueryService;
-
-    private EncryptService encryptService;
 
     private UserService userService;
 
@@ -49,7 +47,7 @@ public class UsersApi {
     @PostMapping("/login")
     public ResponseEntity<?> userLogin(@Valid @RequestBody LoginParam loginParam) {
         Optional<User> optional = userRepository.findByEmail(loginParam.getEmail());
-        if (optional.isPresent() && encryptService.check(loginParam.getPassword(), optional.get().getPassword())) {
+        if (optional.isPresent() && CryptoUtils.check(loginParam.getPassword(), optional.get().getPassword())) {
             UserData userData = userQueryService.findById(optional.get().getId()).get();
             return ResponseEntity.ok(userResponse(new UserWithToken(userData, "JwtUtils.toToken(optional.get())")));
         } else {

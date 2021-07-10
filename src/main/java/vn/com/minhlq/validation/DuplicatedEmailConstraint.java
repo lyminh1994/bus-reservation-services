@@ -11,7 +11,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface DuplicatedEmailConstraint {
 
-    String message() default "duplicated email";
+    String message() default "Duplicated email";
 
     Class<?>[] groups() default {};
 

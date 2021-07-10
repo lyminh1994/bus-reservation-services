@@ -19,7 +19,7 @@ import javax.validation.Payload;
 @Retention(RUNTIME)
 public @interface DuplicatedArticleConstraint {
 
-    String message() default "article name exists";
+    String message() default "Article name already exists!";
 
     Class<?>[] groups() default {};
 

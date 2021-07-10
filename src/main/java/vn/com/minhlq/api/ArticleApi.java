@@ -25,7 +25,7 @@ import vn.com.minhlq.model.User;
 import vn.com.minhlq.repository.ArticleRepository;
 import vn.com.minhlq.service.ArticleCommandService;
 import vn.com.minhlq.service.ArticleQueryService;
-import vn.com.minhlq.utils.AuthorizationUtil;
+import vn.com.minhlq.utils.AuthorizationUtils;
 
 @Tag(name = "Article")
 @RestController
@@ -50,7 +50,7 @@ public class ArticleApi {
     public ResponseEntity<?> updateArticle(@PathVariable("slug") String slug, @AuthenticationPrincipal User user,
             @Valid @RequestBody UpdateArticleParam updateArticleParam) {
         return articleRepository.findBySlug(slug).map(article -> {
-            if (!AuthorizationUtil.canWriteArticle(user, article)) {
+            if (!AuthorizationUtils.canWriteArticle(user, article)) {
                 throw new NoAuthorizationException();
             }
             articleCommandService.updateArticle(article, updateArticleParam);
@@ -61,7 +61,7 @@ public class ArticleApi {
     @DeleteMapping
     public ResponseEntity<?> deleteArticle(@PathVariable("slug") String slug, @AuthenticationPrincipal User user) {
         return articleRepository.findBySlug(slug).map(article -> {
-            if (!AuthorizationUtil.canWriteArticle(user, article)) {
+            if (!AuthorizationUtils.canWriteArticle(user, article)) {
                 throw new NoAuthorizationException();
             }
             articleRepository.remove(article);

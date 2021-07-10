@@ -21,24 +21,24 @@ import vn.com.minhlq.dto.ArticleData;
 import vn.com.minhlq.dto.ArticleDataList;
 import vn.com.minhlq.dto.ArticleFavoriteCount;
 import vn.com.minhlq.model.User;
-import vn.com.minhlq.mybatis.service.ArticleFavoritesReadService;
-import vn.com.minhlq.mybatis.service.ArticleReadService;
-import vn.com.minhlq.mybatis.service.UserRelationshipQueryService;
+import vn.com.minhlq.mybatis.service.ArticleFavoritesService;
+import vn.com.minhlq.mybatis.service.ArticleService;
+import vn.com.minhlq.mybatis.service.UserRelationshipService;
 import vn.com.minhlq.service.ArticleQueryService;
 
 @Service
 @AllArgsConstructor
 public class ArticleQueryServiceImpl implements ArticleQueryService {
 
-    private ArticleReadService articleReadService;
+    private ArticleService articleService;
 
-    private UserRelationshipQueryService userRelationshipQueryService;
+    private UserRelationshipService userRelationshipService;
 
-    private ArticleFavoritesReadService articleFavoritesReadService;
+    private ArticleFavoritesService articleFavoritesService;
 
     @Override
     public Optional<ArticleData> findById(Long id, User user) {
-        ArticleData articleData = articleReadService.findById(id);
+        ArticleData articleData = articleService.findById(id);
         if (articleData == null) {
             return Optional.empty();
         } else {
@@ -51,7 +51,7 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
 
     @Override
     public Optional<ArticleData> findBySlug(String slug, User user) {
-        ArticleData articleData = articleReadService.findBySlug(slug);
+        ArticleData articleData = articleService.findBySlug(slug);
         if (articleData == null) {
             return Optional.empty();
         } else {
@@ -65,7 +65,7 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
     @Override
     public CursorPager<ArticleData> findRecentArticlesWithCursor(String tag, String author, Long favoritedBy,
             CursorPageParameter<DateTime> page, User currentUser) {
-        List<Long> articleIds = articleReadService.findArticlesWithCursor(tag, author, favoritedBy, page);
+        List<Long> articleIds = articleService.findArticlesWithCursor(tag, author, favoritedBy, page);
         if (articleIds.size() == 0) {
             return new CursorPager<>(new ArrayList<>(), page.getDirection(), false);
         } else {
@@ -77,7 +77,7 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
                 Collections.reverse(articleIds);
             }
 
-            List<ArticleData> articles = articleReadService.findArticles(articleIds);
+            List<ArticleData> articles = articleService.findArticles(articleIds);
             fillExtraInfo(articles, currentUser);
 
             return new CursorPager<>(articles, page.getDirection(), hasExtra);
@@ -86,11 +86,11 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
 
     @Override
     public CursorPager<ArticleData> findUserFeedWithCursor(User user, CursorPageParameter<DateTime> page) {
-        List<Long> followdUsers = userRelationshipQueryService.followedUsers(user.getId());
+        List<Long> followdUsers = userRelationshipService.followedUsers(user.getId());
         if (followdUsers.size() == 0) {
             return new CursorPager<>(new ArrayList<>(), page.getDirection(), false);
         } else {
-            List<ArticleData> articles = articleReadService.findArticlesOfAuthorsWithCursor(followdUsers, page);
+            List<ArticleData> articles = articleService.findArticlesOfAuthorsWithCursor(followdUsers, page);
             boolean hasExtra = articles.size() > page.getLimit();
             if (hasExtra) {
                 articles.remove(page.getLimit());
@@ -106,12 +106,12 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
     @Override
     public ArticleDataList findRecentArticles(String tag, String author, Long favoritedBy, Page page,
             User currentUser) {
-        List<Long> articleIds = articleReadService.queryArticles(tag, author, favoritedBy, page);
-        int articleCount = articleReadService.countArticle(tag, author, favoritedBy);
+        List<Long> articleIds = articleService.queryArticles(tag, author, favoritedBy, page);
+        int articleCount = articleService.countArticle(tag, author, favoritedBy);
         if (articleIds.size() == 0) {
             return new ArticleDataList(new ArrayList<>(), articleCount);
         } else {
-            List<ArticleData> articles = articleReadService.findArticles(articleIds);
+            List<ArticleData> articles = articleService.findArticles(articleIds);
             fillExtraInfo(articles, currentUser);
             return new ArticleDataList(articles, articleCount);
         }
@@ -119,13 +119,13 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
 
     @Override
     public ArticleDataList findUserFeed(User user, Page page) {
-        List<Long> followdUsers = userRelationshipQueryService.followedUsers(user.getId());
+        List<Long> followdUsers = userRelationshipService.followedUsers(user.getId());
         if (followdUsers.size() == 0) {
             return new ArticleDataList(new ArrayList<>(), 0);
         } else {
-            List<ArticleData> articles = articleReadService.findArticlesOfAuthors(followdUsers, page);
+            List<ArticleData> articles = articleService.findArticlesOfAuthors(followdUsers, page);
             fillExtraInfo(articles, user);
-            int count = articleReadService.countFeedSize(followdUsers);
+            int count = articleService.countFeedSize(followdUsers);
             return new ArticleDataList(articles, count);
         }
     }
@@ -139,7 +139,7 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
     }
 
     private void setIsFollowingAuthor(List<ArticleData> articles, User currentUser) {
-        Set<Long> followingAuthors = userRelationshipQueryService.followingAuthors(currentUser.getId(),
+        Set<Long> followingAuthors = userRelationshipService.followingAuthors(currentUser.getId(),
                 articles.stream().map(articleData1 -> articleData1.getProfileData().getId()).collect(toList()));
         articles.forEach(articleData -> {
             if (followingAuthors.contains(articleData.getProfileData().getId())) {
@@ -149,7 +149,7 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
     }
 
     private void setFavoriteCount(List<ArticleData> articles) {
-        List<ArticleFavoriteCount> favoritesCounts = articleFavoritesReadService
+        List<ArticleFavoriteCount> favoritesCounts = articleFavoritesService
                 .articlesFavoriteCount(articles.stream().map(ArticleData::getId).collect(toList()));
         Map<Long, Integer> countMap = new HashMap<>();
         favoritesCounts.forEach(item -> {
@@ -159,7 +159,7 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
     }
 
     private void setIsFavorite(List<ArticleData> articles, User currentUser) {
-        Set<Long> favoritedArticles = articleFavoritesReadService.userFavorites(
+        Set<Long> favoritedArticles = articleFavoritesService.userFavorites(
                 articles.stream().map(articleData -> articleData.getId()).collect(toList()), currentUser);
 
         articles.forEach(articleData -> {
@@ -170,9 +170,9 @@ public class ArticleQueryServiceImpl implements ArticleQueryService {
     }
 
     private void fillExtraInfo(Long id, User user, ArticleData articleData) {
-        articleData.setFavorited(articleFavoritesReadService.isUserFavorite(user.getId(), id));
-        articleData.setFavoritesCount(articleFavoritesReadService.articleFavoriteCount(id));
+        articleData.setFavorited(articleFavoritesService.isUserFavorite(user.getId(), id));
+        articleData.setFavoritesCount(articleFavoritesService.articleFavoriteCount(id));
         articleData.getProfileData().setFollowing(
-                userRelationshipQueryService.isUserFollowing(user.getId(), articleData.getProfileData().getId()));
+                userRelationshipService.isUserFollowing(user.getId(), articleData.getProfileData().getId()));
     }
 }

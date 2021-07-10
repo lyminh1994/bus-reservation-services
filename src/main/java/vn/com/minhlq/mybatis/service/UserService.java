@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import vn.com.minhlq.dto.UserData;
 
 @Mapper
-public interface UserReadService {
+public interface UserService {
 
     UserData findByUsername(@Param("username") String username);
 

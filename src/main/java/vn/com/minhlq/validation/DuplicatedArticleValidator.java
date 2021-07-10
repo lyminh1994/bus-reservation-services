@@ -16,4 +16,5 @@ public class DuplicatedArticleValidator implements ConstraintValidator<Duplicate
     public boolean isValid(String value, ConstraintValidatorContext context) {
         return !articleQueryService.findBySlug(Article.toSlug(value), null).isPresent();
     }
+
 }

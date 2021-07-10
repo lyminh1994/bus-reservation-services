@@ -6,10 +6,10 @@ import lombok.experimental.UtilityClass;
  * @author minhlq
  */
 @UtilityClass
-public class CollectionUtil {
+public class CollectionUtils {
 
     public <T> T getFirst(Iterable<T> iterable) {
-        return IterableUtil.getFirst(iterable);
+        return IterableUtils.getFirst(iterable);
     }
 
 }

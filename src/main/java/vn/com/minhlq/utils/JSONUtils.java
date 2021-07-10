@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
  * @author minhlq
  */
 @UtilityClass
-public class JSONUtil {
+public class JSONUtils {
 
     public String toJsonStr(Object json) {
         return null == json ? StringUtils.EMPTY : new Gson().toJson(json);

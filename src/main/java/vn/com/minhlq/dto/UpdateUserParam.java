@@ -1,13 +1,12 @@
 package vn.com.minhlq.dto;
 
-import javax.validation.constraints.Email;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import vn.com.minhlq.validation.EmailConstraint;
 
 @Builder
 @Getter
@@ -17,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class UpdateUserParam {
 
     @Builder.Default
-    @Email(message = "should be an email")
+    @EmailConstraint
     private String email = "";
 
     @Builder.Default

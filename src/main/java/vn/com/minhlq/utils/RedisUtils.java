@@ -12,7 +12,7 @@ import java.util.Collection;
  */
 @Component
 @RequiredArgsConstructor
-public class RedisUtil {
+public class RedisUtils {
 
     private final StringRedisTemplate stringRedisTemplate;
 

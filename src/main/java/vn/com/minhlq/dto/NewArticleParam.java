@@ -19,14 +19,14 @@ import vn.com.minhlq.validation.DuplicatedArticleConstraint;
 @JsonRootName("article")
 public class NewArticleParam {
 
-    @NotBlank(message = "can't be empty")
+    @NotBlank(message = "Article title can't be empty")
     @DuplicatedArticleConstraint
     private String title;
 
-    @NotBlank(message = "can't be empty")
+    @NotBlank(message = "Article description can't be empty")
     private String description;
 
-    @NotBlank(message = "can't be empty")
+    @NotBlank(message = "Article body can't be empty")
     private String body;
 
     private List<String> tagList;

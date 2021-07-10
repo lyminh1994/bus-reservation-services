@@ -1,12 +1,13 @@
 package vn.com.minhlq.model;
 
-import lombok.Data;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import java.util.Date;
+
+import org.joda.time.DateTime;
+
+import lombok.Data;
 
 /**
  * @author minhlq
@@ -21,10 +22,10 @@ public class AbstractEntity {
 
     private String createBy;
 
-    private Long createAt = new Date().getTime();
+    private DateTime createAt = new DateTime();
 
     private String updateBy;
 
-    private Long updateAt = new Date().getTime();
+    private DateTime updateAt = new DateTime();
 
 }

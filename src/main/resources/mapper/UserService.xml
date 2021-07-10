@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="vn.com.minhlq.mybatis.service.UserReadService">
+<mapper namespace="vn.com.minhlq.mybatis.service.UserService">
     <select id="findByUsername" resultType="vn.com.minhlq.dto.UserData">
-        select * from users where username = #{username}
+        SELECT * FROM user WHERE username = #{username}
     </select>
 
     <select id="findById" resultType="vn.com.minhlq.dto.UserData">
-        select * from users where id = #{id}
+        SELECT * FROM user WHERE id = #{id}
     </select>
 </mapper>

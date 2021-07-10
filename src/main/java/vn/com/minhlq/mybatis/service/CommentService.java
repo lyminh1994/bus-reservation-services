@@ -10,7 +10,7 @@ import vn.com.minhlq.common.CursorPageParameter;
 import vn.com.minhlq.dto.CommentData;
 
 @Mapper
-public interface CommentReadService {
+public interface CommentService {
 
     CommentData findById(@Param("id") Long id);
 

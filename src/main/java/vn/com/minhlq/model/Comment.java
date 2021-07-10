@@ -1,6 +1,6 @@
 package vn.com.minhlq.model;
 
-import java.util.Date;
+import org.joda.time.DateTime;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,13 +19,13 @@ public class Comment {
 
     private Long articleId;
 
-    private Long createdAt;
+    private DateTime createdAt;
 
     public Comment(String body, Long userId, Long articleId) {
         this.body = body;
         this.userId = userId;
         this.articleId = articleId;
-        this.createdAt = new Date().getTime();
+        this.createdAt = new DateTime();
     }
 
 }

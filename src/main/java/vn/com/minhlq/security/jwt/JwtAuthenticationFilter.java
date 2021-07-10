@@ -18,7 +18,7 @@ import vn.com.minhlq.common.ResultCode;
 import vn.com.minhlq.security.config.CustomConfig;
 import vn.com.minhlq.exception.SecurityException;
 import vn.com.minhlq.security.services.UserDetailsServiceImpl;
-import vn.com.minhlq.utils.ResponseUtil;
+import vn.com.minhlq.utils.ResponseUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -62,11 +62,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 filterChain.doFilter(request, response);
             } catch (SecurityException e) {
-                ResponseUtil.renderJson(response, e);
+                ResponseUtils.renderJson(response, e);
                 log.error("###doFilterInternal###", e.getMessage());
             }
         } else {
-            ResponseUtil.renderJson(response, ResultCode.ACCESS_DENIED, null);
+            ResponseUtils.renderJson(response, ResultCode.ACCESS_DENIED, null);
             log.info("###doFilterInternal###", "JWT is blank!");
         }
     }

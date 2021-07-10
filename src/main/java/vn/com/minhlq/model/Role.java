@@ -1,11 +1,15 @@
 package vn.com.minhlq.model;
 
-import lombok.Data;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import lombok.Data;
 
 /**
  * @author minhlq
@@ -22,8 +26,10 @@ public class Role {
 
     private String description;
 
-    private Long createTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createAt;
 
-    private Long updateTime;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateAt;
 
 }

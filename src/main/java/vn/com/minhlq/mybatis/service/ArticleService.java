@@ -10,7 +10,7 @@ import vn.com.minhlq.common.Page;
 import vn.com.minhlq.dto.ArticleData;
 
 @Mapper
-public interface ArticleReadService {
+public interface ArticleService {
 
     ArticleData findById(@Param("id") Long id);
 
